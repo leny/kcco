@@ -11,7 +11,7 @@
  * Last update: 2013-5-2
  */
 
-( function( window, undefined ) {
+( function( window ) {
 
     var $ = function( sSelector, $Context ) {
         var aElements,
@@ -43,13 +43,13 @@
             oXHR.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" );
         }
 
-        for( var header in oSettings.headers ) {
-            oXHR.setRequestHeader( header, oSettings.headers[ header ] );
+        for( var sHeader in oSettings.headers ) {
+            oXHR.setRequestHeader( sHeader, oSettings.headers[ sHeader ] );
         }
 
         oXHR.onreadystatechange = function() {
             if( oXHR.readyState === 4 ) {
-                oSettings.callback( oXHR );
+                oSettings[ typeof oSettings.success === 'function' ? 'success' : 'callback' ]( oXHR );
             }
         };
 
@@ -58,6 +58,7 @@
         return oXHR;
     };
 
+    $.xhr = xhr;
     $.ajax = xhr;
     window.$ = $;
 
