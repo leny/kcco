@@ -8,7 +8,7 @@
  *     jQuery (http://jquery.com)
  *
  * MIT license (http://www.opensource.org/licenses/mit-license.php)
- * Last update: 2013-5-2
+ * Last update: 2013-5-3
 ###
 
 $ = ( sSelector, $Context ) ->
@@ -21,12 +21,10 @@ $ = ( sSelector, $Context ) ->
 xhr = ( oSettings ) ->
     oXHR = new XMLHttpRequest()
     sMethod = oSettings.method ? 'GET'
-    oData = oSettings.data ? {}
     oHeaders = oSettings.headers ? {}
     oXHR.responseType = oSettings.type ? ''
-
     aData = []
-    aData.push( encodeURIComponent( sName ) + '=' + encodeURIComponent( mValue ) ) for sName, mValue of mData
+    aData.push( encodeURIComponent( sName ) + '=' + encodeURIComponent( mValue ) ) for sName, mValue of ( oSettings.data ? {} )
     sData = aData.join '&'
 
     oXHR.open sMethod, oSettings.url + ( if sMethod is 'GET' and sData then '?' + sData else '' ), true

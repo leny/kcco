@@ -10,7 +10,7 @@
  *     jQuery (http://jquery.com)
  *
  * MIT license (http://www.opensource.org/licenses/mit-license.php)
- * Last update: 2013-5-2
+ * Last update: 2013-5-3
 */
 
 
@@ -35,15 +35,15 @@
   };
 
   xhr = function(oSettings) {
-    var aData, mValue, oData, oHeaders, oXHR, sData, sMethod, sName, sValue, _ref, _ref1, _ref2, _ref3;
+    var aData, mValue, oHeaders, oXHR, sData, sMethod, sName, sValue, _ref, _ref1, _ref2, _ref3, _ref4;
     oXHR = new XMLHttpRequest();
     sMethod = (_ref = oSettings.method) != null ? _ref : 'GET';
-    oData = (_ref1 = oSettings.data) != null ? _ref1 : {};
-    oHeaders = (_ref2 = oSettings.headers) != null ? _ref2 : {};
-    oXHR.responseType = (_ref3 = oSettings.type) != null ? _ref3 : '';
+    oHeaders = (_ref1 = oSettings.headers) != null ? _ref1 : {};
+    oXHR.responseType = (_ref2 = oSettings.type) != null ? _ref2 : '';
     aData = [];
-    for (sName in mData) {
-      mValue = mData[sName];
+    _ref4 = (_ref3 = oSettings.data) != null ? _ref3 : {};
+    for (sName in _ref4) {
+      mValue = _ref4[sName];
       aData.push(encodeURIComponent(sName) + '=' + encodeURIComponent(mValue));
     }
     sData = aData.join('&');
