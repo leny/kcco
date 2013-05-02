@@ -66,34 +66,6 @@
         return oXHR;
     };
 
-    var offset = function( $Element ) {
-        var iLeft = 0,
-            iTop = 0,
-            $CurrentElement = $Element,
-            rBody = /body/i;
-
-        if( $CurrentElement.parentNode ) {
-            do {
-                iLeft += $CurrentElement.offsetLeft;
-                iTop += $CurrentElement.offsetTop;
-            } while ( ( $CurrentElement = $CurrentElement.offsetParent ) && $CurrentElement.nodeType < 9 );
-
-            $CurrentElement = $Element;
-
-            do {
-                iLeft -= $CurrentElement.scrollLeft;
-                iTop -= $CurrentElement.scrollTop;
-            } while ( ( $CurrentElement = $CurrentElement.parentNode ) && !rBody.test( $CurrentElement.nodeName ) );
-        }
-
-        return {
-            top: iTop,
-            right: window.innerwidth - iLeft - $Element.offsetWidth,
-            bottom: window.innerHeight - iTop - $Element.offsetHeight,
-            left: iLeft,
-        };
-    };
-
     $.ajax = xhr;
     window.$ = $;
 
