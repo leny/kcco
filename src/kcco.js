@@ -27,7 +27,7 @@
             aReturnedElements.push( oElement );
         }
 
-        return aReturnedElements.length === 1 ? aReturnedElements[ 0 ] : aReturnedElements;
+        return aReturnedElements;
     };
 
     var xhr = function( oSettings ) {
@@ -49,7 +49,7 @@
 
         oXHR.onreadystatechange = function() {
             if( oXHR.readyState === 4 ) {
-                oSettings[ typeof oSettings.success === 'function' ? 'success' : 'callback' ]( oXHR );
+                oSettings.callback( oXHR );
             }
         };
 

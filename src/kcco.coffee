@@ -18,8 +18,6 @@ $ = ( sSelector, $Context ) ->
     aElements = ( $Context or document ).querySelectorAll( sSelector ) or []
     aReturnedElements = ( oElement for oElement in aElements )
 
-    if aReturnedElements.length is 1 then aReturnedElements[ 0 ] else aReturnedElements
-
 xhr = ( oSettings ) ->
     oXHR = new XMLHttpRequest()
     sMethod = oSettings.method ? 'GET'
@@ -32,7 +30,7 @@ xhr = ( oSettings ) ->
     oXHR.setRequestHeader sName, sValue for sName, sValue of oHeaders
 
     oXHR.onreadystatechange = ->
-        oSettings[ if typeof oSettings.success is 'function' then 'success' else 'callback' ]( oXHR ) if oXHR.readyState is 4
+        oSettings.callback oXHR if oXHR.readyState is 4
 
     oXHR.send if sMethod is 'GET' then null else oData
 
