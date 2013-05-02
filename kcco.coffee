@@ -21,18 +21,23 @@ $ = ( sSelector, $Context ) ->
 xhr = ( oSettings ) ->
     oXHR = new XMLHttpRequest()
     sMethod = oSettings.method ? 'GET'
-    oData = oSettings.data ? ''
+    oData = oSettings.data ? {}
     oHeaders = oSettings.headers ? {}
+    oXHR.responseType = oSettings.type ? ''
 
-    oXHR.open sMethod, oSettings.url + ( if sMethod is 'GET' and oData then '?' + oData else '' ), true
+    aData = []
+    aData.push( encodeURIComponent( sName ) + '=' + encodeURIComponent( mValue ) ) for sName, mValue of mData
+    sData = aData.join '&'
+
+    oXHR.open sMethod, oSettings.url + ( if sMethod is 'GET' and sData then '?' + sData else '' ), true
 
     oXHR.setRequestHeader "Content-type", "application/x-www-form-urlencoded" if sMethod isnt 'GET' and !oHeaders[ 'Content-type' ] and !oHeaders[ 'Content-Type' ]
     oXHR.setRequestHeader sName, sValue for sName, sValue of oHeaders
 
     oXHR.onreadystatechange = ->
-        oSettings.callback oXHR if oXHR.readyState is 4
+        oSettings.callback oXHR.response, oXHR if oXHR.readyState is 4
 
-    oXHR.send if sMethod is 'GET' then null else oData
+    oXHR.send if sMethod is 'GET' then null else sData
 
     oXHR
 

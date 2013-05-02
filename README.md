@@ -17,12 +17,9 @@
 **settings** is an JS Object with the following properties :
 * url: *string*, url to call
 * method: *string*, HTTP method of the request
-* data: *string*, query-formatted string to transmit with the request
+* data: *object*, object to transmit with the request
 * headers: *object*, hash of HTTP headers
-* callback: *function*, function called when Request is done
+* type: *string*, expected type for the response
+* callback: *function*, function called when Request is done, first parameter is response, second is XHR object
 
 * * *
-
-### TODO
-
-* allow $.ajax settings.data to be an object
