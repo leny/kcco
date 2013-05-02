@@ -13,16 +13,18 @@
 
 ( function( window, undefined ) {
 
-    var $ = function( sExpression, $Context ) {
-        var aElements = ( $Context || document ).querySelectorAll( sExpression ) || [],
+    var $ = function( sSelector, $Context ) {
+        var aElements,
             aReturnedElements = [];
 
-        try {
-            aReturnedElements =  Array.prototype.slice.call( aElements );
-        } catch( e ) {
-            for( var i = -1, oElement; oElement = aElements[ ++i ]; ) {
-                aReturnedElements.push( oElement );
-            }
+        if( !sSelector ) {
+            return [];
+        }
+
+        aElements = ( $Context || document ).querySelectorAll( sSelector ) || [];
+
+        for( var i = -1, oElement; oElement = aElements[ ++i ]; ) {
+            aReturnedElements.push( oElement );
         }
 
         return aReturnedElements.length === 1 ? aReturnedElements[ 0 ] : aReturnedElements;
