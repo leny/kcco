@@ -30,14 +30,6 @@
         return aReturnedElements.length === 1 ? aReturnedElements[ 0 ] : aReturnedElements;
     };
 
-    if ( !Array.prototype.forEach ) {
-        Array.prototype.forEach = function( fCallback, oScope ) {
-            for( var i = 0, len = this.length; i < len; ++i ) {
-                fCallback.call( oScope || this, this[i], i, this );
-            }
-        }
-    }
-
     var xhr = function( oSettings ) {
         var oXHR = new XMLHttpRequest(),
             sMethod = oSettings.method || 'GET',
