@@ -1,4 +1,12 @@
-# Keep calm and carry on - A (very) small javascript util library
+# Keep calm and carry on
+
+> A (very) small javascript util library
+
+* * *
+
+> ⚠️ **NOTE:** this is completely _outdated_.
+
+* * *
 
 *Keep calm and carry on* provides shortcuts methods for javascript.
 
@@ -21,5 +29,3 @@
 * headers: *object*, hash of HTTP headers
 * type: *string*, expected type for the response
 * callback: *function*, function called when Request is done, first parameter is response, second is XHR object
-
-* * *
